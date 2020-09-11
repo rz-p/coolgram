@@ -15,13 +15,12 @@ class PostsController extends Controller
 
     public function create()
     {
-        return view('posts.create');    
+        return view('posts.create');
     }
-    
+
     public function store()
     {
         $data = request()->validate([
-            'another' => '',
             'caption' => 'required',
             'image'=> ['required','image'],
         ]);
@@ -34,18 +33,17 @@ class PostsController extends Controller
         auth()->user()->posts()->create([
                 'caption' => $data['caption'],
                 'image'=> $imagePath,
-            
+
             ]);
         return redirect('/profile/'. auth()->user()->id);
     }
 
 
-    public function show(\App\Post $post)
+/*     public function show(\App\Post $post)
     {
         return view('posts.show', compact('post'));
-
     }
-
+ */
 
 }
 

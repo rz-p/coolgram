@@ -63,7 +63,7 @@
                                         Manage Account
                                     </div>
 
-                                    <x-jet-dropdown-link href="/user/profile">
+                                    <x-jet-dropdown-link href="/user/profile/{{ Auth::user()->id }}/edit">
                                         Profile
                                     </x-jet-dropdown-link>
 

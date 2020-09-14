@@ -73,9 +73,11 @@ class User extends Authenticatable
         });
     }
 
+    protected $guarded = [];
+
     public function profile()
     {
-        $this->hasOne(Profile::class);
+       return $this->hasOne(Profile::class);
     }
 
     public function posts()

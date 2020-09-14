@@ -18,8 +18,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    return view('profile.profile');
+})->name('profile.profile');
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 
@@ -37,9 +37,9 @@ Route::get('/p/{post}', 'PostsController@show')->name('posts.show');
 Route::post('/p', 'PostsController@store')->name('posts.store');
 
 
-Route::get('/user/profile/{user}', 'ProfilesController@show')->name('profile.show');
+// Route::get('/user/profile/{user}', 'ProfilesController@show')->name('profile.show');
 
-Route::get('/user/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::get('/user/profile/{user}/edit', 'ProfilesController@edit');
 
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
 

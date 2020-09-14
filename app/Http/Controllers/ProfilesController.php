@@ -18,7 +18,7 @@ class ProfilesController extends Controller
     {
         $this->authorize('update', $user->profile);
         /* if ($user->can('update', $user->profile)); */
-        return view('profile.edit', compact('user'));
+        return view('profile.show', compact('user'));
     }
 
     public function update(User $user)
@@ -27,7 +27,6 @@ class ProfilesController extends Controller
         // if ($user->can('update', $user->profile));
 
             $data = request()->validate([
-                'name' => 'required|string',
                 'description' => 'required|string',
                 'url' => 'url', /* problem w/ url validation and PHP 7.3.x; works on PHP 7.2.x or lower */
                 'image' => 'image',
@@ -51,4 +50,10 @@ class ProfilesController extends Controller
         return redirect("/profile/{$user->id}");
 
     }
+
+    public function show(User $user)
+    {
+        return view('profiles.show', compact('user'));
+    }
+
 }

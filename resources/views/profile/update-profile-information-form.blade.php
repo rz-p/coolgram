@@ -60,7 +60,6 @@
             <x-jet-input-error for="email" class="mt-2" />
         </div>
 
-
         <!-- Profile Description -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="description" value="Profile Description" />

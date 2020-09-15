@@ -5,10 +5,10 @@
         </h2>
     </x-slot>
 
-    <div class="justify-items-center border">
+    <div class=" flex-col justify-items-center border">
         <div class="flex">
-            <div class="col-6 p-5 ml-5">
-                <img class=" rounded-full border m-1 w-50"
+            <div class="col-8 p-8">
+                <img class="block rounded-full w-20 h-20"
             src="{{ Auth::user()->profile_photo_url }}">
             </div>
 
@@ -26,12 +26,12 @@
                    {{--  @can('update', $user->profile) --}}
                         {{-- add post button --}}
                         <button href="/p/create"  class="bg-blue-500 text-white strong border-blue-500 hover:bg-blue-200 hover:text-blue-500 p-1 rounded" >
-                            <a href="/p/create">+</a>
+                            <a href="/p/create">+ Add New Post</a>
                         </button>
 
                         {{-- edit profile button --}}
-                        <button href='/profile/{{ Auth::user()->id }}/edit' class="bg-blue-500 text-white strong border-blue-500 hover:bg-blue-200 hover:text-blue-500 p-1 rounded">
-                               <a href="/profile/{{ Auth::user()->id}}/edit">Edit Profile</a>
+                        <button href='/profile/{{ Auth::User()->id }}/edit/' class="bg-blue-500 text-white strong border-blue-500 hover:bg-blue-200 hover:text-blue-500 p-1 rounded">
+                               <a href="/profile/{{ Auth::User()->id }}/edit/">Edit Profile</a>
                         </button>
                    {{--  @endcan --}}
 

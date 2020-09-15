@@ -27,7 +27,7 @@
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
-                                <a href="/dashboard">
+                                <a href="/profile">
                                     <img src="/svg/myLogo.svg" class="w-8 h-8">
                                     {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
                                 </a>
@@ -35,18 +35,25 @@
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                                    Dashboard
+                                <x-jet-nav-link href="/home" :active="request()->routeIs('home.index')">
+                                    Home
+                                </x-jet-nav-link>
+                            </div>
+
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="/explore" :active="request()->routeIs('explore')">
+                                    Explore
+                                </x-jet-nav-link>
+                            </div>
+
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="/profile" :active="request()->routeIs('dashboard')">
+                                    Your Profile
                                 </x-jet-nav-link>
                             </div>
                         </div>
-
-{{--                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                                Not Dash
-                            </x-jet-nav-link>
-                        </div>
-                    </div> --}}
 
                         <!-- Settings Dropdown -->
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -63,8 +70,8 @@
                                         Manage Account
                                     </div>
 
-                                    <x-jet-dropdown-link href="/user/profile/{{ Auth::user()->id }}/edit">
-                                        Profile
+                                    <x-jet-dropdown-link href="/profile/{{ Auth::User()->id }}/edit/">
+                                        Profile Settings
                                     </x-jet-dropdown-link>
 
                                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Intervention\Image\Facades\Image;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers;
+use Intervention\Image\Facades\Image;
 
 
 class PostsController extends Controller
@@ -18,32 +20,38 @@ class PostsController extends Controller
         return view('posts.create');
     }
 
-    public function store()
+/*     protected function store(array $data)
     {
-        $data = request()->validate([
-            'caption' => 'required',
-            'image'=> ['required','image'],
+        return User::store([
+            'caption' => $data['required'],
+            'photo' => $data['required', 'image'],
+
         ]);
 
-            $imagePath = request('image')->store('uploads','public');
+    } */
 
+     public function store()
+     {
+         $data = request()->validate([
+             'caption' => ['required'],
+             'image'=> ['required','image'],
+         ]);
+            $imagePath = request('image')->store('uploads','public');
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
             $image->save();
-
         auth()->user()->posts()->create([
-                'caption' => $data['caption'],
-                'image'=> $imagePath,
-
+                 'caption' => $data['caption'],
+                 'image'=> $imagePath,
             ]);
-        return redirect('/profile/'. auth()->user()->id);
+         return redirect('/profile/');
     }
 
 
-/*     public function show(\App\Post $post)
-    {
-        return view('posts.show', compact('post'));
-    }
- */
+     public function show(\App\Post $post)
+     {
+         return view('posts.show', compact('post'));
+     }
+
 
 }
 

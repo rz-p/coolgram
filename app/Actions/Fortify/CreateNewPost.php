@@ -4,10 +4,10 @@ namespace App\Actions\Fortify;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
+use Laravel\Fortify\Contracts\CreateNewPost;
 // use Intervention\Image\ImageManager;
 
-class UpdateUserProfileInformation implements UpdatesUserProfileInformation
+class CreateNewPost implements CreateNewPost
 {
     /**
      * Validate and update the given user's profile information.
@@ -16,14 +16,13 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      * @param  array  $input
      * @return void
      */
-    public function update($user, array $input)
+    public function update($posts, array $input)
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'image'],
-            'description' => ['nullable', 'string', 'max:255']
-        ])->validateWithBag('updateProfileInformation');
+            'caption' => ['string', 'max:255'],
+            'photo' => ['required', 'image'],
+            'user_id'
+        ])->validate();
 
         if (isset($input['photo'])) {
                 $user->updateProfilePhoto($input['photo']);

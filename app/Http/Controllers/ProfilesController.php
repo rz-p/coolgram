@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers;
 use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
@@ -16,44 +16,49 @@ class ProfilesController extends Controller
 
     public function edit(User $user)
     {
-        $this->authorize('update', $user->profile);
-        /* if ($user->can('update', $user->profile)); */
         return view('profile.show', compact('user'));
     }
 
-    public function update(User $user)
-    {
-        $this->authorize('update', $user->profile);
-        // if ($user->can('update', $user->profile));
+    // public function edit(User $user)
+    // {
+    //     $this->authorize('update', $user);
+    //     /* if ($user->can('update', $user->profile)); */
+    //     return view('profile.update-profile-information-form', compact('user'));
+    // }
 
-            $data = request()->validate([
-                'description' => 'required|string',
-                'url' => 'url', /* problem w/ url validation and PHP 7.3.x; works on PHP 7.2.x or lower */
-                'image' => 'image',
-            ]);
+    // public function update(User $user)
+    // {
+    //     $this->authorize('update', $user->profile);
+    //     // if ($user->can('update', $user->profile));
 
-        if(request('image')){
-            $imagePath = request('image')->store('profile','public');
+    //         $data = request()->validate([
+    //             'description' => 'required|string',
+    //             'url' => 'url', /* problem w/ url validation and PHP 7.3.x; works on PHP 7.2.x or lower */
+    //             'image' => 'image',
+    //         ]);
 
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
-            $image->save();
+    //     if(request('image')){
+    //         $imagePath = request('image')->store('profile','public');
 
-            $imageArray = ['image' => $imagePath];
+    //         $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
+    //         $image->save();
 
-        }
+    //         $imageArray = ['image' => $imagePath];
 
-        auth()->user()->profile->update(array_merge(
-           $data,
-           $imageArray ?? []
-        ));
+    //     }
 
-        return redirect("/profile/{$user->id}");
+    //     auth()->user()->profile->update(array_merge(
+    //        $data,
+    //        $imageArray ?? []
+    //     ));
 
-    }
+    //     return redirect("/profile/{$user->id}");
+
+    // }
 
     public function show(User $user)
     {
-        return view('profiles.show', compact('user'));
+        return view('profile.show', compact('user'));
     }
 
 }

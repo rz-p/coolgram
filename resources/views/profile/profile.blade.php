@@ -16,17 +16,23 @@
             <div class="border bg-blue-300 flex">
                 <div class="col-10 pt-1 pl-5  justify-content-between">
                     <div class="break-long-words items-center">
-                        <p class="text-xl font-extrabold"> {{ Auth::User()->name }} </p>
+                        <p class="text-xl font-extrabold">
+                            {{ Auth::User()->name }}
+                        </p>
                     </div>
 
                     {{-- add post button --}}
                     <button href="/p/create"  class="bg-blue-500 text-white strong border-blue-500 hover:bg-blue-200 hover:text-blue-500 p-1 rounded" >
-                        <a href="/p/create">+ Add New Post</a>
+                        <a href="/p/create">
+                            + Add New Post
+                        </a>
                     </button>
 
                     {{-- edit profile button --}}
                     <button href='/profile/{{ Auth::User()->id }}/edit/' class="bg-blue-500 text-white strong border-blue-500 hover:bg-blue-200 hover:text-blue-500 p-1 rounded">
-                            <a href="/profile/{{ Auth::User()->id }}/edit/">Edit Profile</a>
+                            <a href="/profile/{{ Auth::User()->id }}/edit/">
+                                Edit Profile
+                            </a>
                     </button>
 
                     <div class="font-normal bg-red-300 items-center">
@@ -36,7 +42,6 @@
                     <div class="bg-yellow-300 flex" style="width: 500px;height:auto;">
                         <div class="pr-3" style="word-wrap:break-word">
                             {{ Auth::user()->description }}----------------------------------------------------------------------
-
                         </div>
                     </div>
 
@@ -56,7 +61,7 @@
                         <div class="col-4 pb-3">
                             aaaaaaaaaaaaaaa
                             <a href="/p/{{ $post->user->user_id }}">
-                                    <img src="/public/{{ $post->image_url }}" class="w-100" alt="">
+                                    <img src="/storage/{{ $post->image }}" class="" style="height:300px; width:300px;"alt="">
                             </a>
                         </div>
                     @endforeach

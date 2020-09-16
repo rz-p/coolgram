@@ -5,78 +5,63 @@
         </h2>
     </x-slot>
 
-    <div class=" flex-col justify-items-center border">
-        <div class="flex">
-            <div class="col-8 p-8">
-                <img class="block rounded-full w-20 h-20"
+
+    <div class="container align-content-center">
+        <div class="row">
+            <div class="col-3 pl-5 pt-6 justify-items-center">
+                <img class="rounded-full" style="height:150px; width:150px; float:left;"
             src="{{ Auth::user()->profile_photo_url }}">
             </div>
 
-            <div class="flex border">
-                <div class="col-6 p-5">
+            <div class="border bg-blue-300 flex">
+                <div class="col-10 pt-1 pl-5  justify-content-between">
                     <div class="break-long-words items-center">
-                       <p class="text-xl font-extrabold"> {{ Auth::user()->name }} </p>
+                        <p class="text-xl font-extrabold"> {{ Auth::User()->name }} </p>
                     </div>
 
-{{--                 @cannot('update', Profile::class)
-                    <follow-button user-id="{{ Auth::user()->profile->user_id }}"></follow-button>
-                @endcan --}}
-                {{--                 <edit-profile-button></edit-profile-button>
-                    <add-post-button></add-post-button> --}}
-                   {{--  @can('update', $user->profile) --}}
-                        {{-- add post button --}}
-                        <button href="/p/create"  class="bg-blue-500 text-white strong border-blue-500 hover:bg-blue-200 hover:text-blue-500 p-1 rounded" >
-                            <a href="/p/create">+ Add New Post</a>
-                        </button>
+                    {{-- add post button --}}
+                    <button href="/p/create"  class="bg-blue-500 text-white strong border-blue-500 hover:bg-blue-200 hover:text-blue-500 p-1 rounded" >
+                        <a href="/p/create">+ Add New Post</a>
+                    </button>
 
-                        {{-- edit profile button --}}
-                        <button href='/profile/{{ Auth::User()->id }}/edit/' class="bg-blue-500 text-white strong border-blue-500 hover:bg-blue-200 hover:text-blue-500 p-1 rounded">
-                               <a href="/profile/{{ Auth::User()->id }}/edit/">Edit Profile</a>
-                        </button>
-                   {{--  @endcan --}}
+                    {{-- edit profile button --}}
+                    <button href='/profile/{{ Auth::User()->id }}/edit/' class="bg-blue-500 text-white strong border-blue-500 hover:bg-blue-200 hover:text-blue-500 p-1 rounded">
+                            <a href="/profile/{{ Auth::User()->id }}/edit/">Edit Profile</a>
+                    </button>
 
-
-
-    {{--            <button id="follow-button" class="button col-2 pl-3"
-                        style="cursor: pointer; background-color:#000000; color: white; border: 2px solid #ffffff; align-content:space-around; border-radius: 8px; font-size:10px; display:inline-block">
-                        <h3>...</h3>
-                    </button> --}}
-
-                    <div class="flex pt-2 font-weight-bold">@ {{ Auth::user()->username }} </div>
-                    <div class="flex" style="width: 500px;height:auto;">
-                        {{-- <div class="pr-3" style="word-wrap:break-word">
-                            {{ $user->profile->description }}
-                        </div> --}}
+                    <div class="font-normal bg-red-300 items-center">
+                        @{{ Auth::user()->username }}
                     </div>
+
+                    <div class="bg-yellow-300 flex" style="width: 500px;height:auto;">
+                        <div class="pr-3" style="word-wrap:break-word">
+                            {{ Auth::user()->description }}----------------------------------------------------------------------
+
+                        </div>
+                    </div>
+
                     {{-- <div><a href={{ $user->profile->url }}>{{ $user->profile->url }}</a></div> --}}
-                    <div class="flex">
-                    {{-- <div class="pr-3 pb-0 pt-3"><strong>{{ $user->posts->count() }}</strong> photos</div> --}}
-                        <div class="p-3"><strong>472</strong> likes</div>
-                        <div class="p-3" style="cursor: pointer;"><strong>510</strong> followers</div>
+                    <div class="flex bg-gray-500 align-items-baseline">
+                        <div class="pr-3"><strong>{{ Auth::User()->posts->count() }}</strong> photos</div>
+                        <div class="pr-3"><strong>472</strong> likes</div>
+                        <div class="pr-3" style="cursor: pointer;"><strong>510</strong> followers</div>
                     </div>
                 </div>
             </div>
 
-            {{-- <div class="d-flex" style="border-top: 2px solid rgba(0,0,0,0.05); width:fit-content; margin:3px 0 0 0;">
+            <div class="ml-3 pt-3 justify-content-center" style="border-top: 2px solid rgba(0,0,0,0.1); margin:20px 0 0 0;">
 
-                <div class="row pt-2">
-                    @foreach($user->posts as $post)
+                <div class=" flex-row pt-2">
+                    @foreach(Auth::user()->posts as $post)
                         <div class="col-4 pb-3">
-                            <a href="/laratest/public/p/{{ $post->id}}">
-                                    <img src="/laratest/storage/app/public/{{ $post->image }}" class="w-100" alt="">
+                            aaaaaaaaaaaaaaa
+                            <a href="/p/{{ $post->user->user_id }}">
+                                    <img src="/public/{{ $post->image_url }}" class="w-100" alt="">
                             </a>
                         </div>
                     @endforeach
                 </div>
-
-            </div>
- --}}
-
-    {{-- <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
             </div>
         </div>
-    </div> --}}
+    </div>
 </x-app-layout>

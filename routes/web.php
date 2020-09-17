@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\PostsController;
-use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\Auth\PostsController;
+use App\Http\Controllers\Auth\ProfilesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/profile', function () {
-    return view('profile.profile');
-})->name('dashboard');
+
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/profile/{user}', 'PostsController@show' {
+//     return view('profile.profile');
+// });
 
 // Route::get('auth/login', 'Auth\AuthController@getLogin');
 
@@ -29,25 +29,32 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/profile', function () {
 // Auth::routes();
 
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home.index');
+// Route::get('/home', function () {
+//     return view('home');
+// })->name('home.index');
 
 // Route::post('follow/{user}', 'FollowsController@store')->name('follows.store');
 
 
-Route::get('/p/create', [PostsController::class, 'create'])->name('posts.create');
+Route::middleware(['auth:sanctum', 'verified'])->get('/p/create', 'PostsController@create')->name('posts.create');
 
 Route::get('/p/{post}', [PostsController::class, 'show'])->name('post.show');
 
-Route::post('/p', [PostsController::class, 'store'])->name('post.store');
+// Route::post('/p', [PostsController::class, 'store'])->name('post.store');
+
+Route::post('/p', 'PostsController@store')->name('post.store');
 
 
 // Route::get('/user/profile/{user}', [ProfilesController::class, 'show'])->name('profile.show');
 
-Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit'])->name('profile.edit');
+// Route::get('/profile/{id}/edit', [ProfilesController::class, 'edit'])->name('profile.edit');
 
-// Route::patch('/profile/{user}', [ProfilesController::class, 'update'])->name('profile.update');
+Route::middleware(['auth:sanctum', 'verified'])->get('/profile/{id}/edit', 'ProfilesController@edit')->name('profile.edit');
+
+Route::middleware(['auth:sanctum', 'verified'])->patch('/profile/{id}', 'ProfilesController@update')->name('profile.update');
+
+Route::get('/profile/{id}', 'ProfilesController@show')->name('profile.profile');
+
 
 
 // Route::get('/home', 'HomeController@index')->name('home');

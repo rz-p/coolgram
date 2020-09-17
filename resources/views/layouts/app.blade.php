@@ -49,7 +49,7 @@
 
 
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-jet-nav-link href="/profile" :active="request()->routeIs('dashboard')">
+                                <x-jet-nav-link href="/profile/{{Auth::User()->id}}" :active="request()->routeIs('dashboard')">
                                     Your Profile
                                 </x-jet-nav-link>
                             </div>

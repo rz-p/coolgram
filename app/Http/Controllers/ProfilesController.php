@@ -8,10 +8,10 @@ use App\Http\Controllers;
 use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
-{
+{ 
     public function index(User $user)
     {
-        return view('profiles.index', compact('user')); 
+        return view('profiles.index', compact('user'));
     }
 
     public function edit(User $user)
@@ -19,7 +19,17 @@ class ProfilesController extends Controller
         return view('profile.show', compact('user'));
     }
 
-    // public function edit(User $user)
+    public function show(User $user)
+    {
+        return view('profile.profile', compact('user'));
+    }
+
+}
+
+
+
+
+// public function edit(User $user)
     // {
     //     $this->authorize('update', $user);
     //     /* if ($user->can('update', $user->profile)); */
@@ -55,10 +65,3 @@ class ProfilesController extends Controller
     //     return redirect("/profile/{$user->id}");
 
     // }
-
-    public function show(User $user)
-    {
-        return view('profile.show', compact('user'));
-    }
-
-}

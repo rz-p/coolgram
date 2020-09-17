@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Profile;
 
 class User extends Authenticatable
 {
@@ -67,7 +68,7 @@ class User extends Authenticatable
         static::created(function ($user) {
 
             $user->profile()->create([
-                'name' =>$user->username,
+                'name' => $user->username,
             ]);
 
         });

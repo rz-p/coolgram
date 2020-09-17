@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
 
-
     <div class="container align-content-center">
         <div class="row">
             <div class="col-3 pl-5 pt-6 justify-items-center">
@@ -36,12 +35,12 @@
                     </button>
 
                     <div class="font-normal bg-red-300 items-center">
-                        @{{ Auth::user()->username }}
+                        @ {{ Auth::user()->username }}
                     </div>
 
                     <div class="bg-yellow-300 flex" style="width: 500px;height:auto;">
                         <div class="pr-3" style="word-wrap:break-word">
-                            {{ Auth::user()->description }}----------------------------------------------------------------------
+                            {{-- {{ "$user->profile->description" --}}----------------------------------------------------------------------
                         </div>
                     </div>
 
@@ -54,14 +53,13 @@
                 </div>
             </div>
 
-            <div class="ml-3 pt-3 justify-content-center" style="border-top: 2px solid rgba(0,0,0,0.1); margin:20px 0 0 0;">
+            <div class="ml-3 pt-3 flex" style="border-top: 2px solid rgba(0,0,0,0.1); margin:20px 0 0 0;">
 
-                <div class=" flex-row pt-2">
-                    @foreach(Auth::user()->posts as $post)
-                        <div class="col-4 pb-3">
-                            aaaaaaaaaaaaaaa
-                            <a href="/p/{{ $post->user->user_id }}">
-                                    <img src="/storage/{{ $post->image }}" class="" style="height:300px; width:300px;"alt="">
+                <div class="row pt-2">
+                    @foreach(Auth::User()->posts as $post)
+                        <div class="col-auto pb-3">
+                            <a href="/p/{{ $post->id }}">
+                                <img src="/storage/{{ $post->image }}" class="" style="height:300px; width:300px;"alt="">
                             </a>
                         </div>
                     @endforeach

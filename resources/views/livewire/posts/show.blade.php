@@ -30,8 +30,8 @@
                     <hr>
 
                 <p><span class="font-weight-bold">
-                    <a href="/profile/{{ Auth::user()->profile->user_id }}">
-                        <span class="text-dark">{{ Auth::user()->profile_photo_url }}</span>
+                    <a href="/profile/{{ $post->user->profile->user_id }}">
+                        <span class="text-dark">{{ $post->user->profile_photo_url }}</span>
                     </a>
                     <span class="font-weight-normal">
                         {{ $post->caption }}

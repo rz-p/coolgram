@@ -38,7 +38,7 @@ Route::view('/', 'welcome');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/p/create', 'PostsController@create')->name('posts.create');
 
-Route::get('/p/{post}', [PostsController::class, 'show'])->name('post.show');
+Route::get('/p/{post}', 'PostsController@show')->name('post.show');
 
 // Route::post('/p', [PostsController::class, 'store'])->name('post.store');
 
@@ -49,11 +49,13 @@ Route::post('/p', 'PostsController@store')->name('post.store');
 
 // Route::get('/profile/{id}/edit', [ProfilesController::class, 'edit'])->name('profile.edit');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/profile/{id}/settings', 'ProfilesController@setting')->name('profile.setting');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/profile/{id}/edit', 'ProfilesController@edit')->name('profile.edit');
 
-Route::middleware(['auth:sanctum', 'verified'])->patch('/profile/{id}', 'ProfilesController@update')->name('profile.update');
+// Route::middleware(['auth:sanctum', 'verified'])->patch('/profile/{id}', 'ProfilesController@update')->name('profile.update');
 
-Route::get('/profile/{id}', 'ProfilesController@show')->name('profile.profile');
+Route::middleware(['auth:sanctum', 'verified'])->get('/myprofile', 'ProfilesController@show')->name('profile.profile');
 
 
 

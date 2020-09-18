@@ -51,7 +51,7 @@ class PostsController extends Controller
                 'image'=> $imagePath,
 
             ]);
-        return redirect('/profile/'. {{Auth::User()->id}});
+        return redirect('/profile/'. 'Auth::User()->id');
     }
 
 

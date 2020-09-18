@@ -1,21 +1,23 @@
 <div>
+<x-jet-form-section submit="#">
+    <x-slot name="title">
+        Upload an image with caption to your profile.
+    </x-slot>
+    <x-slot name="description">
+    </x-slot>
 
-    <div class="container">
-        <form action="/p" enctype="multipart/form-data" method="post">
+    <x-slot name="form">
+
+        <form action="/p" enctype="multipart/form-data" method="POST">
             @csrf
-
             <div class="row">
                 <div class="col-8 offset-2">
-
-                    <div class="row">
-                        <h2><strong>Add New Post</strong> </h2>
-                    </div>
-
-                    <div class="form-group row">
+                    <div class="form-group row pb-5">
                         <label for="caption" class="col-md-4; col-form-label">Caption</label>
                         <input id="caption"
                                 type="text"
-                                class="form-control{{ $errors->has('caption') ? ' is-invalid' : '' }}"
+                                class=" bg-white border border-gray-300 focus:border-blue-300 focus:shadow-outline-blue
+                                active:text-gray-800  active:bg-gray-50 form-control{{ $errors->has('caption') ? ' is-invalid' : '' }}"
                                 name="caption"
                                 caption="caption"
                                 value="{{ old('caption') }}" required autofocus>
@@ -28,7 +30,7 @@
                     </div>
 
                     <div class="row">
-                        <label for="image" class="col-md-4; col-form-label">Post Image</label>
+                        <label for="image" class="col-form-label">Upload Image</label>
                         <input type="file" class="form-control-file" id="image" name="image">
 
                         @if ($errors->has('image'))
@@ -36,14 +38,24 @@
                         @endif
                     </div>
 
-                    <div class="row pt-4">
-                        <button class="button">Add New Post</button>
+                    <div class="row">
+                        <button href="/p/" type="button" class="
+                            bg-white border border-gray-300 rounded-md font-semibold text-xs
+                            text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500
+                            focus:outline-none focus:border-blue-300 focus:shadow-outline-blue
+                            active:text-gray-800 active:bg-gray-50 transition ease-in-out
+                            duration-150 mt-2">
+                            <a href="/p/">Add New Post</a>
+                        </button>
                     </div>
 
                 </div>
             </div>
         </form>
-    </div>
+
+    </x-slot>
+</x-jet-form-section>
+</div>
 
 
 

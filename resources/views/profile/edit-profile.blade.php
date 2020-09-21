@@ -35,7 +35,7 @@
 
             </x-slot>
 
-            {{-- <x-slot name="actions">
+            <x-slot name="actions">
                 <x-jet-action-message class="mr-3" on="Saved">
                     Saved.
                 </x-jet-action-message>
@@ -43,7 +43,7 @@
                 <x-jet-button>
                     Save
                 </x-jet-button>
-            </x-slot> --}}
+            </x-slot>
 
         </x-jet-form-section>
 

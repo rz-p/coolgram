@@ -21,7 +21,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make($input, [
             'description' => ['nullable', 'string', 'max:255'],
             'URL'=> ['nullable', 'url', 'max:255'],
-        ])->validateWithBag('updateProfileInformation');
+        ])->validate;
 
     }
 }

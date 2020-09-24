@@ -36,13 +36,17 @@ Route::view('/', 'welcome');
 // Route::post('follow/{user}', 'FollowsController@store')->name('follows.store');
 
 
+Route::get('/explore/', 'ExploreController@show')->name('explore.show');
+
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/p/create', 'PostsController@create')->name('posts.create');
 
-Route::get('/p/{post}', 'PostsController@show')->name('post.show');
+/* Route::get('/p/{post}', 'PostsController@show')->name('post.show'); */
 
 // Route::post('/p', [PostsController::class, 'store'])->name('post.store');
 
-Route::post('/p', 'PostsController@store')->name('post.store');
+Route::post('/p/', 'PostsController@store')->name('post.store');
 
 
 // Route::get('/user/profile/{user}', [ProfilesController::class, 'show'])->name('profile.show');

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Explore;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 
-class PostsController extends Controller
+class ExploreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +24,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create-post');
+        //
     }
 
     /**
@@ -36,43 +35,27 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
-            'caption' => 'required',
-            'image'=> ['required','image'],
-        ]);
-
-            $imagePath = request('image')->store('uploads','public');
-
-            $image = Image::make(public_path("/storage/{$imagePath}"))->fit(1200, 1200);
-            $image->save();
-
-        auth()->user()->posts()->create([
-                'caption' => $data['caption'],
-                'image'=> $imagePath,
-
-            ]);
-        return redirect('/myprofile/');
+        //
     }
-
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Explore  $explore
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Explore $explore)
     {
-        return view('posts.show-post', compact('post'));
+        return view('explore.explore');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Explore  $explore
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Explore $explore)
     {
         //
     }
@@ -81,10 +64,10 @@ class PostsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Explore  $explore
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Explore $explore)
     {
         //
     }
@@ -92,10 +75,10 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Explore  $explore
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Explore $explore)
     {
         //
     }

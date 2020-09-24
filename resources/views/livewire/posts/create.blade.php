@@ -1,5 +1,5 @@
 <div>
-<x-jet-form-section submit="#">
+<x-jet-form-section submit="#" method="post">
     <x-slot name="title">
         Upload an image with caption to your profile.
     </x-slot>
@@ -8,12 +8,12 @@
 
     <x-slot name="form">
 
-        <form action="/p" enctype="multipart/form-data" method="POST">
+        <form action="/p/" enctype="multipart/form-data" method="post">
             @csrf
-            <div class="row">
-                <div class="col-8 offset-2">
+            <div class="flex-row-h16">
+                <div class="flex-col-h8 offset-2">
                     <div class="form-group row pb-5">
-                        <label for="caption" class="col-md-4; col-form-label">Caption</label>
+                        <label for="caption" class="col-md-4 col-form-label mb-6">Caption</label>
                         <input id="caption"
                                 type="text"
                                 class=" bg-white border border-gray-300 focus:border-blue-300 focus:shadow-outline-blue
@@ -22,6 +22,8 @@
                                 caption="caption"
                                 value="{{ old('caption') }}" required autofocus>
 
+
+
                         @if ($errors->has('caption'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('caption') }}</strong>
@@ -29,8 +31,10 @@
                         @endif
                     </div>
 
+                    <span class="border-top "></span>
+
                     <div class="row">
-                        <label for="image" class="col-form-label">Upload Image</label>
+                        <label for="image" class="col-form-label mb-6">Upload Image</label>
                         <input type="file" class="form-control-file" id="image" name="image">
 
                         @if ($errors->has('image'))
@@ -39,7 +43,7 @@
                     </div>
 
                     <div class="row">
-                        <button href="/p/" type="button" class="
+                        <button href="/p/" type="button" method="post" class="
                             bg-white border border-gray-300 rounded-md font-semibold text-xs
                             text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500
                             focus:outline-none focus:border-blue-300 focus:shadow-outline-blue

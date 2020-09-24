@@ -6,11 +6,11 @@
             </h2>
         </x-slot>
 
-        <div class="container align-content-center">
+        <div class="flex justify-between-16 align-content-center">
             <div class="row">
                 <div class="col-3 pl-5 pt-6 justify-items-center">
                     <img class="rounded-full" style="height:150px; width:150px; float:left;"
-                src="{{ Auth::User()->profile_photo_url }}">
+                src="/{{ Auth::User()->profile_photo_path }}">
                 </div>
 
                 <div class="border bg-blue-300 flex">
@@ -58,10 +58,10 @@
                 <div class="ml-3 pt-3" style="border-top: 2px solid rgba(0,0,0,0.1); margin:20px 0 0 0;">
 
                     <div class="row-span-3 pt-2">
-                        @foreach(Auth::User()->posts as $post)
+                        @foreach(Auth::User()->posts as $posts)
                             <div class="col-span-3 pb-3">
-                                <a href="/p/{{ $post->id }}">
-                                    <img src="/storage/{{ $post->image }}" class="" style="height:300px; width:300px;"alt="">
+                                <a href="/p/{{ $posts->id }}">
+                                    <img src="/storage/{{ $posts->image }}" class="" style="height:300px; width:300px;"alt="">
                                 </a>
                             </div>
                         @endforeach
